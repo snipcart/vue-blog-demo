@@ -1,0 +1,27 @@
+@mixin flex($_g, $_s, $_b) {
+	flex-grow: $_g;
+	flex-shrink: $_s;
+	flex-basis: $_b;
+}
+
+@mixin clearfix {
+	&::after {
+		content: '';
+		display: block;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+	}
+}
+
+@mixin bgCover($_pos:center) {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: $_pos;
+}
+
+@mixin longWordWrap {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-word;
+}

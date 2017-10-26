@@ -1,0 +1,37 @@
+// colors
+$blue: #206bff;
+$white: #fff;
+$white-shadow: #f3f3f3;
+$off-white: #e3e3e3;
+$light-grey: #99a1a6;
+$grey: #656a70;
+$dark-grey: #1b1d1f;
+$off-black: #151618;
+$black: #0a0a0b;
+
+// cc map
+$colors:(
+  default:(
+    bg: $dark-grey,
+    txt: $light-grey,
+    primary: $blue,
+    accent: $off-white,
+    line: $black,
+    selection: $black
+  ),
+
+  light:(
+    bg: $white-shadow,
+    txt: $off-white
+  ),
+
+  mid:(
+    bg: $grey,
+    txt: $grey
+  ),
+
+  dark:(
+    bg: $black,
+    txt: $black
+  )
+);

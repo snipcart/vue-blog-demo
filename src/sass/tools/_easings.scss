@@ -1,0 +1,7 @@
+$easings:(
+  default: cubic-bezier(.4, .25, .3, 1),
+  in: cubic-bezier(.6, .1, .8, .7),
+  out: cubic-bezier(.2, .3, .4, .9),
+  in-out: cubic-bezier(.5, .15, .4, 1),
+  bounce: cubic-bezier(.4, .25, .3, 1.4)
+);

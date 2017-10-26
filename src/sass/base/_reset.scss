@@ -1,0 +1,108 @@
+/* reset */
+* {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+  -webkit-padding-before: 0;
+  -webkit-padding-start: 0;
+  -webkit-padding-end: 0;
+  -webkit-padding-after: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*:active,
+*:hover {
+  outline: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+b, i, em, strong,
+h1, h2, h3, h4, h5, h6,
+th, td, pre, ins, del, address,
+input, select, button, textarea {
+  text-transform: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: normal;
+  font-style: normal;
+  letter-spacing: inherit;
+}
+
+textarea,
+input {
+  appearance: none;
+  background-clip: padding-box;
+}
+
+a, ins, del, button {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol,
+menu {
+  list-style: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+pre,
+textarea {
+  overflow: auto;
+  max-width: 100%;
+}
+
+img {
+  display: block;
+  height: auto;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+form {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  overflow: visible;
+}
+
+textarea {
+  resize: none;
+}
+
+::moz-focus-inner {
+  padding: 0;
+  border: none;
+}

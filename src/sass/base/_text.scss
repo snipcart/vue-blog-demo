@@ -1,0 +1,70 @@
+// font stack
+@mixin font-stack($ff, $weight: normal) {
+  font-family: #{$ff}, Helvetica, Arial, sans-serif;
+  font-weight: $weight;
+}
+
+// font families
+%ff--light  { @include font-stack('OpenSans-Light', 200) }
+%ff--book   { @include font-stack('OpenSans-Regular', 400) }
+%ff--bold   { @include font-stack('OpenSans-Bold', 600) }
+
+// extend placeholders
+%txt--body {
+  @extend %ff--book;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+%txt--title {
+  @extend %ff--light;
+  font-size: 42px;
+  line-height: 1;
+
+  @media (--tablet) {
+    font-size: 56px;
+  }
+
+  @media (--laptop) {
+    font-size: 70px;
+  }
+}
+
+%txt--subtitle {
+  @extend %ff--bold;
+  font-size: 32px;
+  line-height: 1;
+
+  @media (--tablet) {
+    font-size: 46px;
+  }
+
+  @media (--laptop) {
+    font-size: 60px;
+  }
+}
+
+%txt--heading {
+  font-size: 24px;
+  line-height: 1.25;
+}
+
+%txt--strong {
+  @extend %ff--bold;
+}
+
+%txt--button {
+  @extend %ff--bold;
+  line-height: 1;
+  letter-spacing: .075em;
+}
+
+%txt--smaller {
+  font-size: .85em;
+  line-height: 1.2;
+}
+
+%txt--bigger {
+  font-size: 1.15em;
+  line-height: 1.2;
+}

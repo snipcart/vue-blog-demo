@@ -1,0 +1,25 @@
+// cubic-bezier
+@function cb($fn: default) {
+  @return map-get($easings, $fn);
+}
+
+// em
+@function em($pixels, $context: 16) {
+  @return #{$pixels/$context}em;
+}
+
+// color-control
+@function cc($color, $option: false, $alpha: false) {
+  $opacity: null;
+  $palette: null;
+
+  @if ($alpha)  {$opacity: $alpha;}
+  @else         {$opacity: if(type-of($option) == 'number', $option, false);}
+
+  @if ($option) {$palette: if(type-of($option) == 'number', default, $option);}
+  @else         {$palette: default;}
+
+  $getPalette: map-get($colors, $palette);
+
+  @return if($opacity, rgba(map-get($getPalette, $color), $opacity), map-get($getPalette, $color));
+}
