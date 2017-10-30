@@ -1,14 +1,17 @@
-import 'babel-polyfill'
 import './startup'
 
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import globals from './components/globals'
+import resource from './resources'
+import * as resources from './resources/v1'
 
 Vue.config.productionTip = false
 
-Vue.use(globals)
+Vue.use(resource, {
+  resources,
+  endpoint: '/static/api'
+})
 
 new Vue({
   router,

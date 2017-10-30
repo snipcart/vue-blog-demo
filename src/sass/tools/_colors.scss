@@ -1,37 +1,23 @@
 // colors
-$blue: #206bff;
-$white: #fff;
-$white-shadow: #f3f3f3;
-$off-white: #e3e3e3;
-$light-grey: #99a1a6;
-$grey: #656a70;
-$dark-grey: #1b1d1f;
-$off-black: #151618;
-$black: #0a0a0b;
+$ghost-white: #fcfdff;
+$mystic: #dae4eb;
+$gunmetal: #2a3744;
+$smoky-black: #0a0908;
+$mustard: #ffc857;
+
 
 // cc map
 $colors:(
   default:(
-    bg: $dark-grey,
-    txt: $light-grey,
-    primary: $blue,
-    accent: $off-white,
-    line: $black,
-    selection: $black
+    bg: $ghost-white,
+    txt: $smoky-black,
+    primary: $mustard,
+    border: $mystic,
+    selection: rgba($gunmetal, .33)
   ),
 
-  light:(
-    bg: $white-shadow,
-    txt: $off-white
-  ),
-
-  mid:(
-    bg: $grey,
-    txt: $grey
-  ),
-
-  dark:(
-    bg: $black,
-    txt: $black
+  alt:(
+    txt: $gunmetal,
+    border: $gunmetal
   )
 );

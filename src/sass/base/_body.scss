@@ -4,11 +4,6 @@ body {
   color: cc(txt);
   background-color: cc(bg);
 
-  &.noscroll {
-    height: 100vh;
-    overflow: hidden;
-  }
-
   ::selection {
     background-color: cc(selection);
   }

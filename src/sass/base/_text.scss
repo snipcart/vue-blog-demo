@@ -5,66 +5,43 @@
 }
 
 // font families
-%ff--light  { @include font-stack('OpenSans-Light', 200) }
-%ff--book   { @include font-stack('OpenSans-Regular', 400) }
-%ff--bold   { @include font-stack('OpenSans-Bold', 600) }
+%ff--200 { @include font-stack('Prompt', 200) }
+%ff--300 { @include font-stack('Prompt', 300) }
+%ff--500 { @include font-stack('Prompt', 500) }
+%ff--700 { @include font-stack('Prompt', 700) }
 
 // extend placeholders
 %txt--body {
-  @extend %ff--book;
-  font-size: 16px;
+  @extend %ff--300;
+  font-size: 1rem;
+}
+
+%txt--content {
+  @extend %txt--body;
   line-height: 1.5;
 }
 
-%txt--title {
-  @extend %ff--light;
-  font-size: 42px;
+%txt--banner {
+  @extend %ff--700;
   line-height: 1;
+  font-size: 2.4rem;
+  // text-transform: uppercase;
+}
 
-  @media (--tablet) {
-    font-size: 56px;
-  }
-
-  @media (--laptop) {
-    font-size: 70px;
-  }
+%txt--title {
+  @extend %ff--200;
+  font-size: 1.8rem;
+  line-height: 1;
 }
 
 %txt--subtitle {
-  @extend %ff--bold;
-  font-size: 32px;
+  @extend %ff--500;
+  font-size: 1.4rem;
   line-height: 1;
-
-  @media (--tablet) {
-    font-size: 46px;
-  }
-
-  @media (--laptop) {
-    font-size: 60px;
-  }
 }
 
 %txt--heading {
-  font-size: 24px;
+  @extend %ff--700;
+  font-size: 1.2rem;
   line-height: 1.25;
-}
-
-%txt--strong {
-  @extend %ff--bold;
-}
-
-%txt--button {
-  @extend %ff--bold;
-  line-height: 1;
-  letter-spacing: .075em;
-}
-
-%txt--smaller {
-  font-size: .85em;
-  line-height: 1.2;
-}
-
-%txt--bigger {
-  font-size: 1.15em;
-  line-height: 1.2;
 }

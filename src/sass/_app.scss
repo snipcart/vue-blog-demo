@@ -1,12 +1,13 @@
 @import
 // tools */
-'~sass/tools',
+'./tools',
 // base */
-'~sass/base/fontface',
-'~sass/base/reset',
-'~sass/base/text',
-'~sass/base/body',
-'~sass/base/icon',
+'./base/reset',
+'./base/text',
+'./base/body',
+'./base/icon',
 // blocks */
-'~sass/blocks/pace',
-'~sass/blocks/rte'
+'./blocks/pace',
+'./blocks/rte',
+'./blocks/nav',
+'./blocks/blog'

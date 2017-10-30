@@ -18,12 +18,12 @@
   }
 
   strong {
-    @extend %txt--strong;
+    @extend %ff--500;
   }
 
   em strong,
   strong em {
-    @extend %txt--strong;
+    @extend %ff--500;
     font-style: italic;
   }
 

@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "lodash.merge": "^4.6.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

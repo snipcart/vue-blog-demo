@@ -4,21 +4,10 @@
 
 <script>
 export default {
-  name: 'app',
-
-  beforeMount() {
-    // const body = document.body
-    // let symbols = document.createElement('object')
-    // symbols.style.display = 'none'
-    //
-    // this.$http.get('/static/svg/icons.svg').then(response => {
-    //   symbols.innerHTML = response.body
-    //   body.insertBefore(symbols, body.children[0])
-    // })
-  }
+  name: 'app'
 }
 </script>
 
 <style lang="scss">
-@import 'sass/app';
+@import './sass/app';
 </style>

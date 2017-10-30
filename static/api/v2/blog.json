@@ -1,0 +1,11 @@
+{
+  "license": "All Rights Reserved",
+  "results": [{
+    "id": "blog",
+    "title": "in plain vue",
+    "about": {
+      "label": "about",
+      "text": "lorem ipsum"
+    }
+  }]
+}

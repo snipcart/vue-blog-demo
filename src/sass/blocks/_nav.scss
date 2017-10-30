@@ -1,0 +1,44 @@
+.nav {
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid cc(border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  &__title {
+    @extend %txt--banner;
+    color: cc(txt, alt);
+  }
+
+  &__item {
+    cursor: pointer;
+    position: relative;
+    padding: .125rem .25rem;
+    user-select: none;
+    z-index: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: cc(primary);
+      opacity: 0;
+      z-index: -1;
+      transform: translate3d(0, .5rem, 0);
+      transition: 275ms cb();
+      transition-property: transform, opacity;
+    }
+
+    &+& {
+      margin-left: .75rem;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
