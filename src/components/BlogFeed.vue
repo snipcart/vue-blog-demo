@@ -12,7 +12,7 @@
       <aside class="preview__details">
         <h5 class="preview__meta">
           by {{ post.author }} —
-          <time>  {{ getElapsedTime(post.published) }} ago</time>
+          <time>{{ getElapsedTime(post.published) }} ago</time>
         </h5>
       </aside>
     </li>
