@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import resource from './resources/resource'
-import * as resources from './resources/v1'
+import * as resources from './resources/implementation-v1'
 
 Vue.config.productionTip = false
 

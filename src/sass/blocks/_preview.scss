@@ -1,0 +1,53 @@
+.preview {
+  display: flex;
+  align-items: stretch;
+
+  &__figure {
+    position: relative;
+    flex-grow: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 33%;
+      background-image: linear-gradient(to bottom, cc(shadow, .33), transparent);
+    }
+  }
+
+  &__title {
+    @extend %txt--preview;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .75rem;
+    color: cc(txt, inv);
+  }
+
+  &__details {
+    position: relative;
+    width: 1.5rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    height: 1.5rem;
+    padding: 0 .5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    transform: rotate(90deg);
+    transform-origin: 0 0;
+
+    time {
+      margin-left: .35rem
+    }
+  }
+}

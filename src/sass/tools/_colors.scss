@@ -13,11 +13,16 @@ $colors:(
     txt: $smoky-black,
     primary: $mustard,
     border: $mystic,
+    shadow: $smoky-black,
     selection: rgba($gunmetal, .33)
   ),
 
   alt:(
     txt: $gunmetal,
     border: $gunmetal
+  ),
+
+  inv:(
+    txt: $ghost-white
   )
 );

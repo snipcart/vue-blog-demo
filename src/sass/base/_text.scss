@@ -24,8 +24,13 @@
 %txt--banner {
   @extend %ff--700;
   line-height: 1;
-  font-size: 2.4rem;
-  // text-transform: uppercase;
+  font-size: 2.6rem;
+}
+
+%txt--preview {
+  @extend %ff--500;
+  font-size: 3.5rem;
+  text-transform: capitalize;
 }
 
 %txt--title {
