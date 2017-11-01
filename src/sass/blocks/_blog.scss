@@ -1,7 +1,7 @@
 .blog {
   &__feed {
     display: flex;
-    align-items: stretch;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding: 2.5rem;
   }

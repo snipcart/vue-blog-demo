@@ -13,6 +13,7 @@
 
   &__item {
     cursor: pointer;
+    display: inline-block;
     position: relative;
     padding: .125rem .25rem;
     user-select: none;
@@ -28,7 +29,7 @@
       background-color: cc(primary);
       opacity: 0;
       z-index: -1;
-      transform: translate3d(0, .5rem, 0);
+      transform: translate3d(0, .2rem, 0);
       transition: 275ms cb();
       transition-property: transform, opacity;
     }

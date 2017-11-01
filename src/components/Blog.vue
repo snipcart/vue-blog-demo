@@ -1,7 +1,8 @@
 <template>
   <main class="blog">
     <nav-bar :title="title" :label="about.label"/>
-    <blog-feed :feed="feed"/>
+    <blog-feed :posts="feed" :author="author"/>
+    <router-view/>
   </main>
 </template>
 
@@ -13,6 +14,7 @@ export default {
   name: 'blog',
   resource: 'Blog',
   components: { NavBar, BlogFeed },
+  props: { author: String },
 
   data() {
     return {
