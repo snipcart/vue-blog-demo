@@ -1,1 +1,2 @@
-export { default as Blog } from './blog'
+export { default as Blog } from './Blog'
+export { default as BlogFeed } from './BlogFeed'

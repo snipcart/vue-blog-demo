@@ -1,11 +1,4 @@
 export default {
-  feed() {
-    return {
-      path: '/v1/feed.json',
-      resolve: (response, mappers) => mappers.set({ feed: response.results })
-    }
-  },
-
   blog() {
     return {
       path: '/v1/blog.json',

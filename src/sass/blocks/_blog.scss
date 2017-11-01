@@ -1,9 +1,11 @@
 .blog {
+  padding-top: 8.5rem;
+
   &__feed {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding: 2.5rem;
+    padding: 0 4rem;
   }
 
   &__post {

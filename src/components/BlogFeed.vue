@@ -1,19 +1,20 @@
 <template>
   <transition-group tag="ul" class="blog__feed">
     <li v-for="post in feed" class="blog__post preview" :key="post.id">
-      <figure class="preview__figure">
-        <img :src="post.image"/>
+      <router-link :to="`/read/${post.id}`">
+        <figure class="preview__figure">
+          <img :src="post.image"/>
 
-        <figcaption class="preview__title ">
-          {{ post.title }}
-        </figcaption>
-      </figure>
+          <figcaption class="preview__title ">
+            <h4>{{ post.title }}</h4>
+          </figcaption>
+        </figure>
+      </router-link>
 
       <aside class="preview__details">
         <h5 class="preview__meta">
-          <router-link :to="getAuthorLink(post.author)">by {{ post.author }}</router-link>
-           —
-          <time>{{ getElapsedTime(post.published) }} ago</time>
+          <router-link :to="getAuthorLink(post.author)">{{ post.author }}</router-link>
+          <time class="preview__published">{{ getElapsedTime(post.published) }} ago</time>
         </h5>
       </aside>
     </li>
@@ -23,25 +24,28 @@
 <script>
 export default {
   name: 'blog-feed',
-  props: {
-    author: String,
-    posts: {
-      type: Array,
-      default: () => []
+  resource: 'BlogFeed',
+  props: { author: String },
+
+  data() {
+    return {
+      posts: []
     }
   },
 
   computed: {
     feed() {
-      return (!this.author)
-        ? this.posts
-        : this.posts.filter(({ author }) => ~author.indexOf(this.author.replace('-', ' ')))
+      const authors = ({ author }) => this.author === this.normalizeName(author)
+      return (!this.author) ? this.posts : this.posts.filter(authors)
     }
   },
 
   methods: {
+    normalizeName(name) {
+      return name.toLowerCase().replace(' ', '-')
+    },
     getAuthorLink(name) {
-      return `/by/${name.toLowerCase().replace(' ', '-')}`
+      return `/by/${this.normalizeName(name)}`
     },
     getElapsedTime(since) {
       let minutes = (new Date() - new Date(since)) / 60000
@@ -53,6 +57,10 @@ export default {
 
       return elapsed.join(' ') + ((elapsed[0] > 1) ? 's' : '')
     }
+  },
+
+  beforeMount() {
+    this.$getResource('feed')
   }
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
   <nav class="nav">
-    <h1 class="nav__title">{{ title }}</h1>
+    <h1 class="nav__title">
+      <router-link to="/">{{ title }}</router-link>
+    </h1>
 
     <menu>
       <li class="nav__item"></li>

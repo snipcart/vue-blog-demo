@@ -30,8 +30,6 @@
 
   &__details {
     position: relative;
-    width: 1.5rem;
-    flex-shrink: 0;
     white-space: nowrap;
   }
 
@@ -47,8 +45,14 @@
     transform: rotate(90deg);
     transform-origin: 100% 100%;
 
-    time {
-      margin-left: .35rem
+    &::before {
+      content: 'by';
+      padding-right: .5em;
     }
+  }
+
+  &__published::before {
+    content: '—';
+    padding: 0 .75em;
   }
 }

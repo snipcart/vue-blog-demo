@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { Blog, BlogPost } from '../components'
+import { Blog, BlogFeed, BlogPost } from '../components'
 
 Vue.use(Router)
 
@@ -10,14 +10,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'feed',
       component: Blog,
       children: [
+        {
+          path: '',
+          name: 'feed',
+          component: BlogFeed
+        },
         {
           path: '/by/:author',
           name: 'author',
           props: true,
-          component: Blog
+          component: BlogFeed
         },
         {
           path: '/read/:id',
