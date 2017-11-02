@@ -1,6 +1,5 @@
 .preview {
   position: relative;
-  min-height: calc(100vw / 3);
   z-index: 0;
   @include imagePlaceholder;
 
@@ -25,6 +24,8 @@
 
   &__figure {
     position: relative;
+    padding-top: 140%;
+    @include bgCover;
 
     &::before {
       content: '';

@@ -1,12 +1,15 @@
 .blog {
   position: relative;
   min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 7.5rem 5.5rem 0 4rem;
 
   &__feed {
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+    padding-bottom: 5.5vw;
   }
 
   &__post {

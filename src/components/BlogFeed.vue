@@ -2,9 +2,7 @@
   <transition-group tag="ul" class="blog__feed" name="preview">
     <li v-for="post in feed" :class="classes" :key="post.id">
       <router-link :to="`/read/${post.id}`">
-        <figure class="preview__figure">
-          <img :src="post.image"/>
-
+        <figure class="preview__figure" :style="bgImg(post.image)">
           <transition name="fade">
             <figcaption v-if="!reading" class="preview__title">{{ post.title }}</figcaption>
           </transition>
@@ -76,7 +74,10 @@ export default {
   methods: {
     scrollTo,
     kebabify,
-    prettyDate
+    prettyDate,
+    bgImg(src) {
+      return { backgroundImage: `url(${src})` }
+    }
   },
 
   beforeMount() {
