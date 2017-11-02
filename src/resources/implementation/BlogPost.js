@@ -1,7 +1,7 @@
 export default {
   post(id) {
     return {
-      path: `/v1/post/${id}.json`,
+      path: `/post/${id}.json`,
       resolve: (response, mappers) => {
         let { title, content, meta } = response.results[0]
         content = '<p>' + content.split('\n\n').join('</p><p>') + '</p>'

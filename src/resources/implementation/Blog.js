@@ -1,13 +1,15 @@
 export default {
   blog() {
     return {
-      path: '/v2/blog.json',
+      path: '/blog.json',
       resolve: (response, mappers) => {
-        let blog = response.data.blog
-
+        let blog = response.results[0]
         return mappers.merge({
           title: blog.title,
-          labels: blog.labels
+          labels: {
+            post: blog.post_label,
+            author: blog.author_label
+          }
         })
       }
     }

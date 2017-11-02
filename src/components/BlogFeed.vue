@@ -1,6 +1,6 @@
 <template>
   <transition-group tag="ul" class="blog__feed" name="preview">
-    <li v-for="(post, index) in feed" :class="classes" :key="post.id">
+    <li v-for="post in feed" :class="classes" :key="post.id">
       <router-link :to="`/read/${post.id}`">
         <figure class="preview__figure">
           <img :src="post.image"/>
