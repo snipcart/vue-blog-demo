@@ -1,6 +1,6 @@
 # A Killer Vue.js Blog Demo: Launch in 2 Hours Tops
 
-![vuejs-blog-demo](https://snipcart.com/media/175862/build-vuejs-blog.jpg)
+![vuejs-blog-demo](https://snipcart.com/media/175863/build-vuejs-blog-copy.jpg)
 
 > Learn how to build a killer Vue.js blog with a full demo: custom plugin, templating, pagination, filtering, data decoupling, and more!
 
