@@ -1,11 +1,26 @@
 .preview {
-  display: flex;
-  align-items: stretch;
-  min-height: 30vw;
+  position: relative;
+  min-height: calc(100vw / 3);
+  z-index: 0;
+  @include imagePlaceholder;
+
+  &-move { transition: all 600ms cb() }
+  &-enter-active { transition: all 300ms cb(out) 125ms }
+
+  &-leave-active {
+    transition: all 200ms cb(in);
+    position: absolute;
+    z-index: -1;
+  }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: translate3d(0, -2.5rem, 0);
+  }
 
   &__figure {
     position: relative;
-    flex-grow: 1;
 
     &::before {
       content: '';
@@ -18,18 +33,49 @@
     }
   }
 
-  &__title {
-    @extend %txt--preview;
+  &__content {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: .75rem;
     color: cc(txt, inv);
+    background-color: cc(overlay, 0);
+    transition: background-color 225ms cb();
+
+    .preview__figure:hover & {
+      background-color: cc(shadow, .65);
+    }
+  }
+
+  &__title {
+    @extend %txt--preview;
+  }
+
+  &__description {
+    padding-right: 5rem;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    opacity: 0;
+    font-size: 1.2rem;
+    transition: opacity 275ms cb();
+
+    .preview__figure:hover & {
+      opacity: 1;
+    }
   }
 
   &__details {
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    width: 1.5rem;
+    height: 100%;
+    backface-visibility: hidden;
     white-space: nowrap;
   }
 

@@ -3,9 +3,9 @@
   "data": {
     "blog": {
       "title": "in plain vue",
-      "about": {
-        "label": "about",
-        "text": "lorem ipsum"
+      "labels": {
+        "post": "Exit reading mode",
+        "author": "View all authors"
       }
     }
   }

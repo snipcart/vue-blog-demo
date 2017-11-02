@@ -7,7 +7,7 @@ export default {
 
         return mappers.merge({
           title: blog.title,
-          about: blog.about
+          labels: blog.labels
         })
       }
     }

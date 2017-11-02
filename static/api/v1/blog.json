@@ -2,7 +2,7 @@
   "license": "All Rights Reserved",
   "results": [{
     "title": "In Plain Vue",
-    "about_label": "About",
-    "about_text": "lorem ipsum"
+    "post_label": "Exit reading mode",
+    "author_label": "View all authors"
   }]
 }

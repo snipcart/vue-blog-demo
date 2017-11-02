@@ -5,7 +5,6 @@ $gunmetal: #2a3744;
 $smoky-black: #0a0908;
 $mustard: #ffc857;
 
-
 // cc map
 $colors:(
   default:(
@@ -14,11 +13,13 @@ $colors:(
     primary: $mustard,
     border: $mystic,
     shadow: $smoky-black,
+    overlay: $gunmetal,
     selection: rgba($gunmetal, .33)
   ),
 
   alt:(
     txt: $gunmetal,
+    bg: $mystic,
     border: $gunmetal
   ),
 

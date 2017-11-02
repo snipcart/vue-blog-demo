@@ -1,31 +1,49 @@
 <template>
-  <transition-group tag="ul" class="blog__feed">
-    <li v-for="post in feed" class="blog__post preview" :key="post.id">
+  <transition-group tag="ul" class="blog__feed" name="preview">
+    <li v-for="(post, index) in feed" class="blog__post preview" :key="post.id">
       <router-link :to="`/read/${post.id}`">
         <figure class="preview__figure">
           <img :src="post.image"/>
 
-          <figcaption class="preview__title ">
-            <h4>{{ post.title }}</h4>
-          </figcaption>
+          <transition name="fade">
+            <figcaption v-if="!reading" class="preview__content">
+              <h4 class="preview__title">{{ post.title }}</h4>
+              <p class="preview__description">{{ post.description }}</p>
+            </figcaption>
+          </transition>
         </figure>
       </router-link>
 
-      <aside class="preview__details">
-        <h5 class="preview__meta">
-          <router-link :to="getAuthorLink(post.author)">{{ post.author }}</router-link>
-          <time class="preview__published">{{ getElapsedTime(post.published) }} ago</time>
-        </h5>
-      </aside>
+      <transition name="fade">
+        <aside v-if="!reading" class="preview__details">
+          <h5 class="preview__meta">
+            <router-link
+              :to="`/by/${kebabify(post.author)}`"
+              @click.native="scrollTo(0)">
+              {{ post.author }}
+            </router-link>
+
+            <time class="preview__published">{{ prettyDate(post.published) }}</time>
+          </h5>
+        </aside>
+      </transition>
     </li>
   </transition-group>
 </template>
 
 <script>
+import { scrollTo, kebabify, prettyDate } from '../helpers'
+
 export default {
   name: 'blog-feed',
   resource: 'BlogFeed',
-  props: { author: String },
+
+  props: {
+    filters: {
+      type: Object,
+      default: () => {}
+    }
+  },
 
   data() {
     return {
@@ -34,29 +52,27 @@ export default {
   },
 
   computed: {
+    reading() { return this.filters.post },
     feed() {
-      const authors = ({ author }) => this.author === this.normalizeName(author)
-      return (!this.author) ? this.posts : this.posts.filter(authors)
+      const filterBy = {
+        post: (filter, { id }) => filter === id,
+        author: (filter, { author }) => filter === this.kebabify(author)
+      }
+
+      if (!Object.keys(this.filters).length) return this.posts
+
+      return this.posts.filter(post => {
+        return Object.keys(this.filters).every(filter => {
+          return filterBy[filter](this.filters[filter], post)
+        })
+      })
     }
   },
 
   methods: {
-    normalizeName(name) {
-      return name.toLowerCase().replace(' ', '-')
-    },
-    getAuthorLink(name) {
-      return `/by/${this.normalizeName(name)}`
-    },
-    getElapsedTime(since) {
-      let minutes = (new Date() - new Date(since)) / 60000
-      let elapsed = (minutes / 1440 > 365) ? [minutes / 525600 | 0, 'year']
-        : (minutes >= 1440) ? [minutes / 1440 | 0, 'day']
-        : (minutes >= 60) ? [minutes / 60 | 0, 'hour']
-        : (minutes > 1) ? [minutes | 0, 'minute']
-        : [1, 'minute']
-
-      return elapsed.join(' ') + ((elapsed[0] > 1) ? 's' : '')
-    }
+    scrollTo,
+    kebabify,
+    prettyDate
   },
 
   beforeMount() {
