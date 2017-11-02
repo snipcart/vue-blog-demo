@@ -1,4 +1,6 @@
 .rte {
+  @extend %txt--rte;
+
   p + p {
     margin-top: 1em;
   }

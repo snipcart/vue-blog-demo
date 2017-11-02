@@ -16,7 +16,7 @@
   font-size: 1rem;
 }
 
-%txt--content {
+%txt--rte {
   @extend %txt--body;
   line-height: 1.5;
 }
@@ -36,18 +36,19 @@
 
 %txt--title {
   @extend %ff--200;
-  font-size: 1.8rem;
-  line-height: 1;
+  font-size: 3.2rem;
+  line-height: 1.2;
+  text-transform: capitalize;
 }
 
 %txt--subtitle {
   @extend %ff--500;
-  font-size: 1.4rem;
-  line-height: 1;
+  font-size: 1.25rem;
+  line-height: 1.35;
 }
 
 %txt--heading {
   @extend %ff--700;
-  font-size: 1.2rem;
-  line-height: 1.25;
+  font-size: 1.15rem;
+  line-height: 1.5;
 }

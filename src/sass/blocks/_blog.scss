@@ -1,6 +1,7 @@
 .blog {
   position: relative;
-  padding: 7.5rem 5.5rem 5rem 4rem;
+  min-height: 100vh;
+  padding: 7.5rem 5.5rem 0 4rem;
 
   &__feed {
     display: flex;

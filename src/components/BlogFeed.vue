@@ -1,15 +1,12 @@
 <template>
   <transition-group tag="ul" class="blog__feed" name="preview">
-    <li v-for="(post, index) in feed" class="blog__post preview" :key="post.id">
+    <li v-for="(post, index) in feed" :class="classes" :key="post.id">
       <router-link :to="`/read/${post.id}`">
         <figure class="preview__figure">
           <img :src="post.image"/>
 
           <transition name="fade">
-            <figcaption v-if="!reading" class="preview__content">
-              <h4 class="preview__title">{{ post.title }}</h4>
-              <p class="preview__description">{{ post.description }}</p>
-            </figcaption>
+            <figcaption v-if="!reading" class="preview__title">{{ post.title }}</figcaption>
           </transition>
         </figure>
       </router-link>
@@ -17,7 +14,7 @@
       <transition name="fade">
         <aside v-if="!reading" class="preview__details">
           <h5 class="preview__meta">
-            <router-link
+            <router-link class="preview__author"
               :to="`/by/${kebabify(post.author)}`"
               @click.native="scrollTo(0)">
               {{ post.author }}
@@ -53,6 +50,13 @@ export default {
 
   computed: {
     reading() { return this.filters.post },
+    classes() {
+      return {
+        'preview': true,
+        'blog__post': true,
+        'preview--reading': this.reading
+      }
+    },
     feed() {
       const filterBy = {
         post: (filter, { id }) => filter === id,

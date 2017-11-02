@@ -19,6 +19,10 @@
     transform: translate3d(0, -2.5rem, 0);
   }
 
+  &--reading {
+    pointer-events: none;
+  }
+
   &__figure {
     position: relative;
 
@@ -33,7 +37,8 @@
     }
   }
 
-  &__content {
+  &__title {
+    @extend %txt--preview;
     position: absolute;
     top: 0;
     left: 0;
@@ -50,10 +55,6 @@
     .preview__figure:hover & {
       background-color: cc(shadow, .65);
     }
-  }
-
-  &__title {
-    @extend %txt--preview;
   }
 
   &__description {
@@ -76,6 +77,7 @@
     width: 1.5rem;
     height: 100%;
     backface-visibility: hidden;
+    font-size: .95rem;
     white-space: nowrap;
   }
 
@@ -95,6 +97,11 @@
       content: 'by';
       padding-right: .5em;
     }
+  }
+
+  &__author {
+    @extend %ff--500;
+    text-decoration: underline;
   }
 
   &__published::before {

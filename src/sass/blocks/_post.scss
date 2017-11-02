@@ -2,8 +2,55 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 50%;
+  width: calc(100% / 1.5 - 3rem);
   height: 100%;
-  padding: 10rem 5.5rem 0 0;
+  padding: 10rem 5.5rem 5rem 0;
   background-color: cc(bg);
+  overflow-y: scroll;
+
+  &-enter-active { transition: all 475ms cb() 275ms }
+  &-leave-active { transition: all 325ms cb() }
+
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  &-leave,
+  &-enter-to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  &__header {
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid cc(border);
+  }
+
+  &__title {
+    @extend %txt--title;
+    color: cc(txt, alt);
+    margin-bottom: .75rem;
+  }
+
+  &__subtitle {
+    @extend %txt--subtitle;
+    margin: 2.5rem 0;
+    padding-left: 1.25rem;
+  }
+
+  &__author {
+    @extend %ff--500;
+    text-decoration: underline;
+  }
+
+  &__footer {
+    margin-top: 5rem;
+  }
+
+  &__dash {
+    display: inline-block;
+    margin: 0 .5rem;
+  }
 }

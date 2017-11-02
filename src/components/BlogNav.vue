@@ -33,7 +33,7 @@ export default {
 
   methods: {
     navBack() {
-      if (this.navs) this.$router.go(-1)
+      if (this.navs && !this.filters.author) this.$router.go(-1)
       else this.$router.push('/')
     }
   }
