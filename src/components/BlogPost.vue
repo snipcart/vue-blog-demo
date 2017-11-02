@@ -11,9 +11,10 @@
         </h3>
       </header>
 
-      <blockquote class="post__subtitle">{{ description }}</blockquote>
-
-      <section class="rte" v-html="content"></section>
+      <section class="post__body rte">
+        <blockquote class="post__subtitle">{{ description }}</blockquote>
+        <div class="rte" v-html="content"></div>
+      </section>
 
       <footer class="post__footer">
         <vue-disqus v-if="commentsReady" shortname="vue-blog-demo" :key="post" :identifier="post" :url="`https://vue-blog-demo.netlify.com/read/${post}`"/>

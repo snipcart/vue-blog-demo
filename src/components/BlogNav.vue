@@ -6,6 +6,7 @@
 
     <transition-group tag="menu" name="nav__item">
       <li v-for="label in labels" class="nav__item" :key="label" @click="navBack">
+        <i class="nav__item--icon"></i>
         {{ label }}
       </li>
     </transition-group>

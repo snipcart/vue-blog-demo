@@ -3,14 +3,13 @@ $ghost-white: #fcfdff;
 $mystic: #dae4eb;
 $gunmetal: #2a3744;
 $smoky-black: #0a0908;
-$mustard: #ffc857;
 
 // cc map
 $colors:(
   default:(
     bg: $ghost-white,
     txt: $smoky-black,
-    primary: $mustard,
+    primary: $gunmetal,
     border: $mystic,
     shadow: $smoky-black,
     overlay: $gunmetal,

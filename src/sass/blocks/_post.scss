@@ -24,7 +24,7 @@
   }
 
   &__header {
-    padding-bottom: 1.25rem;
+    padding: 0 1.25rem 1.25rem;
     border-bottom: 1px solid cc(border);
   }
 
@@ -34,10 +34,16 @@
     margin-bottom: .75rem;
   }
 
+  &__body {
+    padding: 0 1.25rem 2.5rem;
+    border-bottom: 1px solid cc(border);
+  }
+
   &__subtitle {
     @extend %txt--subtitle;
     margin: 2.5rem 0;
     padding-left: 1.25rem;
+    padding-right: 5rem;
   }
 
   &__author {
@@ -46,7 +52,8 @@
   }
 
   &__footer {
-    margin-top: 5rem;
+    margin-top: 3.75rem;
+    padding: 0 1.25rem;
   }
 
   &__dash {
