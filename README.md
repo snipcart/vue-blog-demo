@@ -1,6 +1,12 @@
-# vue-blog-demo
+# A Killer Vue.js Blog Demo: Launch in 2 Hours Tops
 
-> A Vue.js blog demo to demonstrate proper decoupling of api data and swapping of resources/providers
+![vuejs-blog-demo](https://snipcart.com/media/175862/build-vuejs-blog.jpg)
+
+> Learn how to build a killer Vue.js blog with a full demo: custom plugin, templating, pagination, filtering, data decoupling, and more!
+
+> [See live demo on CodeSandbox](#)
+
+> [Read full tutorial on the blog](#)
 
 ## Build Setup
 
