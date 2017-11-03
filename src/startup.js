@@ -9,4 +9,4 @@ Pace.once('hide', () => {
 })
 
 // Spektrum Media console message
-console.info('%c', 'line-height:24px;padding:12px 150px;background:url(\'https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/vue-made-log.svg\') center / contain no-repeat;')
+console.info('%c', 'line-height:48px;padding:18px 150px;background:url(\'https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/vue-snip.svg\') center / contain no-repeat;')

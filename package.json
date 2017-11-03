@@ -67,7 +67,6 @@
     "pace": "0.0.4",
     "pace-progress": "^1.0.2",
     "postcss-custom-media": "^6.0.0",
-    "postcss-pxtorem": "^4.0.1",
     "sass-loader": "^6.0.6"
   },
   "engines": {
@@ -77,10 +76,5 @@
   "browserslist": [
     "last 2 versions",
     "not ie <= 9"
-  ],
-  "spk-meta": {
-    "uid": "vue",
-    "hash": "3cbc29b4c550faf047123c123cb07abef07503dd",
-    "repository": "https://bitbucket.org/spektrummedia/vue-template"
-  }
+  ]
 }

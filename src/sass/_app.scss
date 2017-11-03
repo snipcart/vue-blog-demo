@@ -1,11 +1,11 @@
 @import
 // tools */
 './tools',
+'./tools/mediaqueries',
 // base */
 './base/reset',
 './base/text',
 './base/body',
-'./base/icon',
 // blocks */
 './blocks/pace',
 './blocks/rte',
@@ -13,4 +13,5 @@
 './blocks/blog',
 './blocks/preview',
 './blocks/post',
-'./blocks/generic-transitions'
+'./blocks/footer',
+'./blocks/v-transitions'

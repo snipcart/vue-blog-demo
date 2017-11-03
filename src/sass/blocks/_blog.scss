@@ -3,17 +3,46 @@
   min-height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 7.5rem 5.5rem 0 4rem;
+  padding-top: 7.5rem;
+  padding-left: 4rem;
+  padding-right: 5.5rem;
+  padding-bottom: 5rem;
+
+  &--reading {
+    padding-bottom: 0;
+  }
 
   &__feed {
+    position: relative;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    padding-bottom: 5.5vw;
   }
 
   &__post {
-    width: calc(100% / 3 - 5rem);
-    margin: 2.5rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% / 1.5 - 3rem);
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  &__footer {
+    width: calc(100% - 10rem);
+    max-width: 1440px;
+    height: 5rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    transform: translateX(-50%);
+
+    a {
+      display: inline-block;
+      width: calc(100% / 3 - 5rem);
+    }
   }
 }

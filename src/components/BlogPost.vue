@@ -17,7 +17,8 @@
       </section>
 
       <footer class="post__footer">
-        <vue-disqus v-if="commentsReady" shortname="vue-blog-demo" :key="post" :identifier="post" :url="`https://vue-blog-demo.netlify.com/read/${post}`"/>
+        <vue-disqus v-if="commentsReady" shortname="vue-blog-demo"
+          :key="post" :identifier="post" :url="`https://vue-blog-demo.netlify.com/read/${post}`"/>
       </footer>
     </article>
   </transition>
@@ -35,6 +36,7 @@ export default {
 
   data() {
     return {
+      timer: 0,
       title: '',
       author: '',
       content: '',
@@ -46,29 +48,38 @@ export default {
 
   watch: {
     post(to, from) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+        this.timer = 0
+      }
+
       if (to === from || !this.post) return;
+
       this.commentsReady = false
       this.$getResource('post', to)
-
-      setTimeout(() => {
-        this.commentsReady = true
-      }, 1000)
+        .then(() => {
+          this.showComments()
+        })
     }
   },
 
   methods: {
     kebabify,
-    prettyDate
+    prettyDate,
+    showComments() {
+      this.timer = setTimeout(() => {
+        this.commentsReady = true
+        this.timer = 0
+      }, 1000)
+    }
   },
 
   beforeMount() {
-    if (this.post) this.$getResource('post', this.post)
-  },
-
-  mounted() {
-    setTimeout(() => {
-      this.commentsReady = true
-    }, 1000)
+    if (!this.post) return;
+    this.$getResource('post', this.post)
+      .then(() => {
+        this.showComments()
+      })
   }
 }
 </script>

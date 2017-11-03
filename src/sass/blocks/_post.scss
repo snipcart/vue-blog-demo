@@ -1,15 +1,10 @@
 .post {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: calc(100% / 1.5 - 3rem);
-  height: 100%;
   padding: 10rem 5.5rem 5rem 0;
   background-color: cc(bg);
-  overflow-y: scroll;
+  transform: translate3d(0, 0, 0);
 
-  &-enter-active { transition: all 475ms cb() 275ms }
-  &-leave-active { transition: all 325ms cb() }
+  &-enter-active { transition: all 550ms cb() 225ms }
+  &-leave-active { transition: all 350ms cb() }
 
   &-enter,
   &-leave-to {
@@ -17,11 +12,11 @@
     transform: translate3d(100%, 0, 0);
   }
 
-  &-leave,
-  &-enter-to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
+  // &-leave,
+  // &-enter-to {
+  //   opacity: 1;
+  //   transform: translate3d(0, 0, 0);
+  // }
 
   &__header {
     padding: 0 1.25rem 1.25rem;

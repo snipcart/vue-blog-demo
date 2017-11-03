@@ -1,9 +1,9 @@
 <template>
-  <transition-group tag="ul" class="blog__feed" name="preview">
+  <transition-group tag="ul" name="preview">
     <li v-for="post in feed" :class="classes" :key="post.id">
       <router-link :to="`/read/${post.id}`">
         <figure class="preview__figure" :style="bgImg(post.image)">
-          <transition name="fade">
+          <transition name="v--fade">
             <figcaption v-if="!reading" class="preview__title">{{ post.title }}</figcaption>
           </transition>
         </figure>
@@ -51,7 +51,6 @@ export default {
     classes() {
       return {
         'preview': true,
-        'blog__post': true,
         'preview--reading': this.reading
       }
     },

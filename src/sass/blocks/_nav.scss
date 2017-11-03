@@ -3,6 +3,7 @@
   top: 0;
   left: 50%;
   width: calc(100% - 10rem);
+  max-width: 1440px;
   padding: 1.75rem 1.5rem 1.25rem;
   border-bottom: 1px solid cc(border);
   background-color: cc(bg, .975);
@@ -25,7 +26,7 @@
     user-select: none;
     white-space: nowrap;
     z-index: 0;
-    transition: all 250ms cb();
+    transition: all 250ms cb() 250ms;
 
     &+& {
       margin-left: .75rem;
@@ -34,11 +35,13 @@
     &-enter,
     &-leave-to {
       opacity: 0;
+      transition-delay: 0ms;
       transform: translate3d(2.5rem, 0, 0);
     }
 
     &-leave-active {
       position: absolute;
+      bottom: 25%;
     }
 
     &--icon {

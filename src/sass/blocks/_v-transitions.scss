@@ -1,0 +1,23 @@
+.v {
+  &--fade {
+    &-enter-active,
+    &-leave-active { transition: all 275ms cb() }
+
+    &-enter,
+    &-leave-to { opacity: 0 }
+
+    &-leave,
+    &-enter-to { opacity: 1 }
+  }
+
+  &--mask {
+    &-enter-active,
+    &-leave-active { transition: all 150ms cb() 500ms }
+
+    &-enter,
+    &-leave-to { opacity: 0 }
+
+    &-leave,
+    &-enter-to { opacity: 1 }
+  }
+}

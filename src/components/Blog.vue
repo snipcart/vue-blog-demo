@@ -1,8 +1,9 @@
 <template>
-  <main class="blog">
+  <main class="blog" :class="{ 'blog--reading': this.post }">
     <blog-nav :content="content" :filters="filters" :navs="navs"/>
-    <blog-feed :filters="filters"/>
-    <blog-post :post="post"/>
+    <blog-feed :filters="filters" class="blog__feed"/>
+    <blog-post :post="post" class="blog__post"/>
+    <blog-footer class="blog__footer"/>
   </main>
 </template>
 
@@ -10,10 +11,11 @@
 import BlogNav from './BlogNav'
 import BlogFeed from './BlogFeed'
 import BlogPost from './BlogPost'
+import BlogFooter from './BlogFooter'
 
 export default {
   name: 'blog',
-  components: { BlogNav, BlogFeed, BlogPost },
+  components: { BlogNav, BlogFeed, BlogPost, BlogFooter },
   resource: 'Blog',
   props: {
     post: String,
