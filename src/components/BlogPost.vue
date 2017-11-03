@@ -36,7 +36,6 @@ export default {
 
   data() {
     return {
-      timer: 0,
       title: '',
       author: '',
       content: '',
@@ -48,18 +47,11 @@ export default {
 
   watch: {
     post(to, from) {
-      if (this.timer) {
-        clearTimeout(this.timer)
-        this.timer = 0
-      }
-
       if (to === from || !this.post) return;
 
       this.commentsReady = false
       this.$getResource('post', to)
-        .then(() => {
-          this.showComments()
-        })
+        .then(this.showComments)
     }
   },
 
@@ -67,9 +59,8 @@ export default {
     kebabify,
     prettyDate,
     showComments() {
-      this.timer = setTimeout(() => {
+      setTimeout(() => {
         this.commentsReady = true
-        this.timer = 0
       }, 1000)
     }
   },
@@ -77,9 +68,7 @@ export default {
   beforeMount() {
     if (!this.post) return;
     this.$getResource('post', this.post)
-      .then(() => {
-        this.showComments()
-      })
+      .then(this.showComments)
   }
 }
 </script>

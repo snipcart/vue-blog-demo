@@ -1,0 +1,3 @@
+# Netlify redirect rules - https://www.netlify.com/docs/redirects/
+# SPA setup - redirect all to index
+/*    /index.html   200

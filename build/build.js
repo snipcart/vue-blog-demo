@@ -7,8 +7,11 @@ const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
 const chalk = require('chalk')
+const shell = require('shelljs')
 const webpack = require('webpack')
 const config = require('../config')
+const copyFiles = config.build.copyFiles
+const assetsRoot = config.build.assetsRoot
 const webpackConfig = require('./webpack.prod.conf')
 
 const spinner = ora('building for production...')
@@ -31,6 +34,16 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       console.log(chalk.red('  Build failed with errors.\n'))
       process.exit(1)
     }
+
+    shell.config.silent = true
+
+    Object.keys(copyFiles)
+      .forEach(src => shell.cp(
+        path.resolve(__dirname, src),
+        path.resolve(assetsRoot, copyFiles[src])
+      ))
+
+    shell.config.silent = false
 
     console.log(chalk.cyan('  Build complete.\n'))
     console.log(chalk.yellow(

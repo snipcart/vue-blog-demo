@@ -7,6 +7,7 @@
 
   &-move { transition: all 550ms cb() }
   &-enter-active { transition: all 325ms cb(out) 175ms }
+  &-appear-enter-active { transition: all 275ms cb(out) }
 
   &-leave-active {
     transition: all 225ms cb(in);
@@ -15,7 +16,8 @@
   }
 
   &-enter,
-  &-leave-to {
+  &-leave-to,
+  &-appear-enter {
     opacity: 0;
     transform: translate3d(0, -2.5rem, 0);
   }

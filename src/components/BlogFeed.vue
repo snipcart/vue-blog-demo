@@ -1,8 +1,8 @@
 <template>
-  <transition-group tag="ul" name="preview">
+  <transition-group tag="ul" :name="transition">
     <li v-for="post in feed" :class="classes" :key="post.id">
       <router-link :to="`/read/${post.id}`">
-        <figure class="preview__figure" :style="bgImg(post.image)">
+        <figure class="preview__figure" :style="getBgImg(post.image)">
           <transition name="v--fade">
             <figcaption v-if="!reading" class="preview__title">{{ post.title }}</figcaption>
           </transition>
@@ -42,7 +42,8 @@ export default {
 
   data() {
     return {
-      posts: []
+      posts: [],
+      transition: 'preview-appear'
     }
   },
 
@@ -74,13 +75,27 @@ export default {
     scrollTo,
     kebabify,
     prettyDate,
-    bgImg(src) {
+    getBgImg(src) {
       return { backgroundImage: `url(${src})` }
+    },
+    stackPosts(posts) {
+      let interval
+      const stack = () => {
+        this.posts.push(posts.shift())
+
+        if (!posts.length) {
+          this.transition = 'preview'
+          clearInterval(interval)
+        }
+      }
+
+      interval = setInterval(stack, 150)
     }
   },
 
   beforeMount() {
     this.$getResource('feed')
+      .then(this.stackPosts)
   }
 }
 </script>

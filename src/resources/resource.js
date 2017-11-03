@@ -12,9 +12,12 @@ export default {
       let { path, resolve } = resources[name][method](options)
       let uri = endpoint + path
 
-      // methods return promise to keep chain alive
+      // methods return promise to allow chaining
       const mappers = {
-        // deep merge object with component $data
+        // only return promise without modifying instance $data
+        pipe: dataSet => Promise.resolve(dataSet),
+
+        // deep merge object with instance $data
         merge: dataSet => {
           _merge(this.$data, dataSet)
           return Promise.resolve(dataSet)
