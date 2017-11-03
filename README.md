@@ -4,9 +4,9 @@
 
 > Learn how to build a killer Vue.js blog with a full demo: custom plugin, templating, pagination, filtering, data decoupling, and more!
 
-> [See live demo on CodeSandbox](#)
+> [See live demo hosted on Netlify](https://vue-blog-demo.netlify.com/)
 
-> [Read full tutorial on the blog](#)
+> [Read full tutorial on the blog](https://snipcart.com/blog/vuejs-blog-demo)
 
 ## Build Setup
 
