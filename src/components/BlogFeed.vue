@@ -89,13 +89,20 @@ export default {
         }
       }
 
-      interval = setInterval(stack, 150)
+      interval = setInterval(stack, 125)
     }
   },
 
   beforeMount() {
     this.$getResource('feed')
-      .then(this.stackPosts)
+      .then(posts => {
+        if (!Object.keys(this.filters).length) {
+          this.stackPosts(posts)
+        } else {
+          this.posts = posts
+          this.transition = 'preview'
+        }
+      })
   }
 }
 </script>

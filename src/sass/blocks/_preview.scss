@@ -7,7 +7,7 @@
 
   &-move { transition: all 550ms cb() }
   &-enter-active { transition: all 325ms cb(out) 175ms }
-  &-appear-enter-active { transition: all 275ms cb(out) }
+  &-appear-enter-active { transition: all 275ms cb(out) 200ms }
 
   &-leave-active {
     transition: all 225ms cb(in);

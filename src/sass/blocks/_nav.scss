@@ -18,30 +18,32 @@
     color: cc(txt, alt);
   }
 
+  &__menu {
+    position: relative;
+  }
+
   &__item {
     cursor: pointer;
     display: inline-block;
     position: relative;
+    margin-left: .75rem;
     padding: .125rem .25rem;
     user-select: none;
     white-space: nowrap;
     z-index: 0;
-    transition: all 250ms cb() 250ms;
-
-    &+& {
-      margin-left: .75rem;
-    }
+    transition: all 250ms cb() 300ms;
 
     &-enter,
     &-leave-to {
       opacity: 0;
       transition-delay: 0ms;
-      transform: translate3d(2.5rem, 0, 0);
+      transform: translate3d(-2.5rem, 0, 0);
     }
 
     &-leave-active {
       position: absolute;
-      bottom: 25%;
+      bottom: 0;
+      right: 0;
     }
 
     &--icon {
