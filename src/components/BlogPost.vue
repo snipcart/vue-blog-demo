@@ -4,7 +4,7 @@
       <header class="post__header">
         <h2 class="post__title">{{ title }}</h2>
 
-        <h3>by <router-link class="post__author"
+        <h3 class="post__meta">by <router-link class="post__author"
           :to="`/by/${kebabify(author)}`">{{ author }}</router-link>
           <span class="post__dash">—</span>
           <time>{{ prettyDate(published) }}</time>

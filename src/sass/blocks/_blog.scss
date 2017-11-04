@@ -1,15 +1,20 @@
 .blog {
   position: relative;
   min-height: 100vh;
-  max-width: 1440px;
+  max-width: 90rem;
   margin: 0 auto;
-  padding-top: 7.5rem;
-  padding-left: 4rem;
-  padding-right: 5.5rem;
-  padding-bottom: 5rem;
+  padding: 7.5rem 0;
 
   &--reading {
     padding-bottom: 0;
+  }
+
+  @media (--desktop) {
+    padding: 7.5rem 2.5rem 6.5vw;
+  }
+
+  @media (--monitor) {
+    padding: 7.5rem 0 6.5vw;
   }
 
   &__feed {
@@ -17,32 +22,50 @@
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
+    padding: 0 1.25rem;
+
+    @media (--monitor) {
+      padding: 0;
+    }
   }
 
   &__post {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: calc(100% / 1.5 - 3rem);
-    height: 100%;
-    overflow-y: scroll;
+    @media (--laptop) {
+      position: fixed;
+      top: 0;
+      left: calc(100% / 3 + 3.25rem);
+      width: calc(100% / 1.5 - 3.25rem);
+      height: 100%;
+      overflow-y: scroll;
+    }
+
+    @media (--monitor) {
+      width: 62rem;
+      left: calc(50% - 12rem);
+    }
   }
 
   &__footer {
-    width: calc(100% - 10rem);
-    max-width: 1440px;
+    width: 100%;
     height: 5rem;
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
     display: flex;
     align-items: center;
-    padding: 0 1.25rem;
-    transform: translateX(-50%);
+    padding: 0 2.5rem;
+
+    @media (--desktop) {
+      padding: 0 6.25rem;
+    }
+
+    @media (--monitor) {
+      padding: 0 2.5rem;
+    }
 
     a {
       display: inline-block;
-      width: calc(100% / 3 - 5rem);
+      width: 18rem;
     }
   }
 }

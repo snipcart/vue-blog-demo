@@ -1,27 +1,28 @@
 <template>
   <transition-group tag="ul" :name="transition">
-    <li v-for="post in feed" :class="classes" :key="post.id">
-      <router-link :to="`/read/${post.id}`">
-        <figure class="preview__figure" :style="getBgImg(post.image)">
-          <transition name="v--fade">
-            <figcaption v-if="!reading" class="preview__title">{{ post.title }}</figcaption>
-          </transition>
-        </figure>
-      </router-link>
-
-      <transition name="fade">
-        <aside v-if="!reading" class="preview__details">
-          <h5 class="preview__meta">
-            <router-link class="preview__author"
-              :to="`/by/${kebabify(post.author)}`"
-              @click.native="scrollTo(0)">
-              {{ post.author }}
+    <li v-for="post in feed" class="preview" :key="post.id">
+      <figure class="preview__figure" :style="getBgImg(post.image)">
+        <transition name="v--fade">
+          <figcaption v-if="!reading" class="preview__details">
+            <router-link class="preview__title"
+              :to="`/read/${post.id}`">
+              {{ post.title }}
             </router-link>
 
-            <time class="preview__published">{{ prettyDate(post.published) }}</time>
-          </h5>
-        </aside>
-      </transition>
+            <div class="preview__meta">
+              <time class="preview__published">
+                {{ prettyDate(post.published) }}
+              </time>
+
+              <router-link class="preview__author"
+                :to="`/by/${kebabify(post.author)}`"
+                @click.native="scrollTo(0)">
+                {{ post.author }}
+              </router-link>
+            </div>
+          </figcaption>
+        </transition>
+      </figure>
     </li>
   </transition-group>
 </template>
@@ -49,12 +50,6 @@ export default {
 
   computed: {
     reading() { return this.filters.post },
-    classes() {
-      return {
-        'preview': true,
-        'preview--reading': this.reading
-      }
-    },
     feed() {
       const filterBy = {
         post: (filter, { id }) => filter === id,

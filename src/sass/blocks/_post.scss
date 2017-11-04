@@ -1,10 +1,14 @@
 .post {
-  padding: 10rem 5.5rem 5rem 0;
+  padding: 0 1.25rem 2.5rem;
   background-color: cc(bg);
   transform: translate3d(0, 0, 0);
 
-  &-enter-active { transition: all 550ms cb() 225ms }
-  &-leave-active { transition: all 350ms cb() }
+  @media (--laptop) {
+    padding: 10rem 5rem 5rem 0;
+  }
+
+  &-enter-active { transition: all 525ms cb(out) 225ms }
+  &-leave-active { transition: all 350ms cb(in) }
 
   &-enter,
   &-leave-to {
@@ -12,21 +16,39 @@
     transform: translate3d(100%, 0, 0);
   }
 
-  // &-leave,
-  // &-enter-to {
-  //   opacity: 1;
-  //   transform: translate3d(0, 0, 0);
-  // }
-
   &__header {
-    padding: 0 1.25rem 1.25rem;
-    border-bottom: 1px solid cc(border);
+    position: absolute;
+    padding-top: 70%;
+    bottom: 100%;
+    left: 50%;
+    width: 50%;
+
+    @media (--laptop) {
+      position: static;
+      padding: 0 1.25rem 1.25rem;
+      border-bottom: 1px solid cc(border);
+    }
   }
 
   &__title {
     @extend %txt--title;
+    position: absolute;
+    top: 0;
     color: cc(txt, alt);
     margin-bottom: .75rem;
+
+    @media (--laptop) {
+      position: static;
+    }
+  }
+
+  &__meta {
+    position: absolute;
+    top: 0;
+
+    @media (--laptop) {
+      position: static;
+    }
   }
 
   &__body {

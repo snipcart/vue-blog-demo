@@ -30,11 +30,15 @@
 
 %txt--preview {
   @extend %ff--500;
-  font-size: 3.6vw;
+  font-size: 3rem;
   text-transform: capitalize;
 
+  @media (--laptop) {
+    font-size: 2.7rem;
+  }
+
   @media (--desktop) {
-    font-size: 3.25rem;
+    font-size: 3.2rem;
   }
 }
 

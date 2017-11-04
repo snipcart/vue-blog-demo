@@ -1,9 +1,18 @@
 .preview {
   position: relative;
-  width: calc(100% / 3 - 5rem);
-  margin: 2.5rem;
+  width: calc(50% - 2.5rem);
+  margin: 1.25rem 1.25rem 2.5rem;
   z-index: 0;
   @include imagePlaceholder;
+
+  @media (--laptop) {
+    width: calc(100% / 3 - 2.5rem);
+  }
+
+  @media (--desktop) {
+    width: calc(100% / 3 - 5rem);
+    margin: 2.5rem;
+  }
 
   &-move { transition: all 550ms cb() }
   &-enter-active { transition: all 325ms cb(out) 175ms }
@@ -42,80 +51,53 @@
     }
   }
 
-  &__title {
-    @extend %txt--preview;
+  &__details {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  }
+
+  &__title {
+    @extend %txt--preview;
+    display: block;
+    height: 100%;
     padding: .75rem;
     color: cc(txt, inv);
     background-color: cc(shadow, 0);
     transition: background-color 225ms cb();
 
-    .preview__figure:hover & {
+    &:hover {
       background-color: cc(shadow, .65);
     }
 
-    .preview__figure:active & {
-      background-color: cc(shadow, 0);
-      transition: none;
+    @media (--monitor) {
+      padding-right: 1.5rem;
     }
-  }
-
-  &__description {
-    padding-right: 5rem;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
-    opacity: 0;
-    font-size: 1.2rem;
-    transition: opacity 275ms cb();
-
-    .preview__figure:hover & {
-      opacity: 1;
-    }
-  }
-
-  &__details {
-    position: absolute;
-    bottom: 0;
-    left: 100%;
-    width: 1.5rem;
-    height: 100%;
-    backface-visibility: hidden;
-    font-size: .95rem;
-    white-space: nowrap;
   }
 
   &__meta {
     position: absolute;
-    bottom: 0;
-    right: 100%;
-    height: 1.5rem;
-    padding: 0 .5rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: baseline;
-    transform: rotate(90deg);
-    transform-origin: 100% 100%;
+    top: 100%;
+    left: 0;
+    padding: .5rem 0;
+    font-size: .9rem;
 
-    &::before {
-      content: 'by';
-      padding-right: .5em;
+    @media (--tablet) {
+      white-space: nowrap;
     }
+  }
+
+  &__published::after {
+    content: 'by';
+    padding: 0 .25rem;
   }
 
   &__author {
     @extend %ff--500;
     text-decoration: underline;
-  }
-
-  &__published::before {
-    content: '—';
-    padding: 0 .75em;
+    white-space: nowrap;
+    font-size: .9rem;
   }
 }

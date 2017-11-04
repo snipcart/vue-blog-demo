@@ -2,16 +2,25 @@
   position: fixed;
   top: 0;
   left: 50%;
-  width: calc(100% - 10rem);
-  max-width: 1440px;
-  padding: 1.75rem 1.5rem 1.25rem;
+  width: calc(100% - 2.5rem);
+  max-width: 90rem;
+  padding: 1.75rem 1.25rem 1.25rem;
   border-bottom: 1px solid cc(border);
   background-color: cc(bg, .975);
+  box-shadow: 0 -50vw 0 50vw cc(bg, .975);
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   transform: translate(-50%);
   z-index: 1;
+
+  @media (--desktop) {
+    width: calc(100% - 10rem);
+  }
+
+  @media (--monitor) {
+    padding: 1.75rem 2.5rem 1.25rem;
+  }
 
   &__title {
     @extend %txt--banner;
@@ -27,7 +36,7 @@
     display: inline-block;
     position: relative;
     margin-left: .75rem;
-    padding: .125rem .25rem;
+    padding-left: .25rem;
     user-select: none;
     white-space: nowrap;
     z-index: 0;
