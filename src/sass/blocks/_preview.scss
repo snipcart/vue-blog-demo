@@ -1,9 +1,13 @@
 .preview {
   position: relative;
-  width: calc(50% - 2.5rem);
-  margin: 1.25rem 1.25rem 2.5rem;
+  margin: 1.25rem 1.25rem 5rem;
   z-index: 0;
   @include imagePlaceholder;
+
+  @media (--tablet) {
+    width: calc(50% - 2.5rem);
+    margin: 1.25rem 1.25rem 2.5rem;
+  }
 
   @media (--laptop) {
     width: calc(100% / 3 - 2.5rem);
@@ -29,10 +33,6 @@
   &-appear-enter {
     opacity: 0;
     transform: translate3d(0, -2.5rem, 0);
-  }
-
-  &--reading {
-    pointer-events: none;
   }
 
   &__figure {

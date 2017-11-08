@@ -4,7 +4,7 @@
   left: 50%;
   width: calc(100% - 2.5rem);
   max-width: 90rem;
-  padding: 1.75rem 1.25rem 1.25rem;
+  padding: 1.25rem .625rem .625rem;
   border-bottom: 1px solid cc(border);
   background-color: cc(bg, .975);
   box-shadow: 0 -50vw 0 50vw cc(bg, .975);
@@ -13,6 +13,10 @@
   align-items: flex-end;
   transform: translate(-50%);
   z-index: 1;
+
+  @media (--tablet) {
+    padding: 1.75rem 1.25rem 1.25rem;
+  }
 
   @media (--desktop) {
     width: calc(100% - 10rem);
@@ -83,6 +87,26 @@
 
     	&::before { transform: translate3d(-50%, -50%, 0) rotate(-45deg) scaleY(0) }
     	&::after { transform: translate3d(-50%, -50%, 0) rotate(45deg) scaleY(0) }
+
+      @media (--mobile) {
+        box-shadow: none;
+        background-color: cc(primary);
+
+        &::before,
+        &::after {
+          height: 35%;
+        }
+
+    		&::before {
+          transform: translate3d(0, -50%, 0) rotate(-45deg) scaleY(1);
+          transform-origin: 100% 100%;
+        }
+
+    		&::after {
+          transform: translate3d(0, -50%, 0) rotate(45deg) scaleY(1);
+          transform-origin: 100% 0%;
+        }
+      }
     }
 
     &:hover &--icon {

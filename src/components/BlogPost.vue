@@ -6,15 +6,14 @@
 
         <h3 class="post__meta">by <router-link class="post__author"
           :to="`/by/${kebabify(author)}`">{{ author }}</router-link>
-          <span class="post__dash">—</span>
+          <span class="post__sep"></span>
           <time>{{ prettyDate(published) }}</time>
         </h3>
+
+        <blockquote class="post__subtitle">{{ description }}</blockquote>
       </header>
 
-      <section class="post__body rte">
-        <blockquote class="post__subtitle">{{ description }}</blockquote>
-        <div class="rte" v-html="content"></div>
-      </section>
+      <section class="post__body rte" v-html="content"></section>
 
       <footer class="post__footer">
         <vue-disqus v-if="commentsReady" shortname="vue-blog-demo"

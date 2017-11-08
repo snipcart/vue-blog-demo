@@ -24,8 +24,12 @@
 %txt--banner {
   @extend %ff--700;
   line-height: 1;
-  font-size: 2.6rem;
+  font-size: 2.4rem;
   letter-spacing: -.005em;
+
+  @media (--tablet) {
+    font-size: 2.6rem;
+  }
 }
 
 %txt--preview {
@@ -44,9 +48,13 @@
 
 %txt--title {
   @extend %ff--200;
-  font-size: 3.2rem;
+  font-size: 3rem;
   line-height: 1.2;
   text-transform: capitalize;
+
+  @media (--laptop) {
+    font-size: 3.2rem;
+  }
 }
 
 %txt--subtitle {

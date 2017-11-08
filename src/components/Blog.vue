@@ -1,9 +1,16 @@
 <template>
   <main class="blog" :class="{ 'blog--reading': this.post }">
     <blog-nav :content="content" :filters="filters" :navs="navs"/>
-    <blog-feed :filters="filters" class="blog__feed"/>
-    <blog-post :post="post" class="blog__post"/>
-    <blog-footer class="blog__footer"/>
+    <blog-feed :filters="filters"/>
+    <blog-post :post="post"/>
+    <blog-footer/>
+
+    <ul :style="reporter">
+      <li v-for="(active, device) in $device">
+        <label>{{ device }}</label>
+        <output>{{ active }}</output>
+      </li>
+    </ul>
   </main>
 </template>
 
@@ -29,6 +36,14 @@ export default {
       labels: {
         post: '',
         author: ''
+      },
+      reporter: {
+        position: 'fixed',
+        padding: '5rem',
+        top: 0,
+        right: 0,
+        background: 'white',
+        zIndex: 1
       }
     }
   },

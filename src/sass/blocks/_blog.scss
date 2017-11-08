@@ -3,45 +3,46 @@
   min-height: 100vh;
   max-width: 90rem;
   margin: 0 auto;
-  padding: 7.5rem 0;
+  padding: 6.25rem 0 3.75rem;
+  overflow-x: hidden;
 
   &--reading {
     padding-bottom: 0;
   }
 
+  @media (--tablet) {
+    padding: 7.5rem 0;
+  }
+
   @media (--desktop) {
     padding: 7.5rem 2.5rem 6.5vw;
+
+    &--reading {
+      padding-bottom: 0;
+    }
   }
 
   @media (--monitor) {
     padding: 7.5rem 0 6.5vw;
+
+    &--reading {
+      padding-bottom: 0;
+    }
   }
 
   &__feed {
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 0 1.25rem;
+    padding: 0 .625rem;
+
+    @media (--tablet) {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      padding: 0 1.25rem;
+    }
 
     @media (--monitor) {
       padding: 0;
-    }
-  }
-
-  &__post {
-    @media (--laptop) {
-      position: fixed;
-      top: 0;
-      left: calc(100% / 3 + 3.25rem);
-      width: calc(100% / 1.5 - 3.25rem);
-      height: 100%;
-      overflow-y: scroll;
-    }
-
-    @media (--monitor) {
-      width: 62rem;
-      left: calc(50% - 12rem);
     }
   }
 
@@ -52,8 +53,13 @@
     bottom: 0;
     left: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 0 2.5rem;
+
+    @media (--laptop) {
+      justify-content: flex-start;
+    }
 
     @media (--desktop) {
       padding: 0 6.25rem;
@@ -63,9 +69,13 @@
       padding: 0 2.5rem;
     }
 
-    a {
+    .signature {
       display: inline-block;
-      width: 18rem;
+      width: 15rem;
+
+      @media (--tablet) {
+        width: 18rem;
+      }
     }
   }
 }
