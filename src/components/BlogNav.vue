@@ -7,7 +7,7 @@
     <transition-group tag="menu" name="nav__item" class="nav__menu">
       <li v-for="label in labels" class="nav__item" :key="label" @click="navBack">
         <i class="nav__item--icon"></i>
-        {{ label }}
+        <span class="nav__item--label">{{ label }}</span>
       </li>
     </transition-group>
   </nav>

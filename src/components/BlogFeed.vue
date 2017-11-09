@@ -1,12 +1,12 @@
 <template>
   <transition-group tag="ul" :name="transition"  class="blog__feed">
     <li v-for="post in feed" class="preview" :key="post.id">
-      <figure class="preview__figure" :style="getBgImg(post.image)">
+      <figure class="preview__figure" :class="figureClass" :style="getBgImg(post.image)">
         <transition name="v--fade">
-          <figcaption v-if="!reading" class="preview__details">
+          <figcaption v-if="!reading || $device.phone" class="preview__details">
             <router-link class="preview__title"
               :to="`/read/${post.id}`"
-              @click.native="scrollTo(0, 220, 560)">
+              @click.native="scrollTo(0, 220, scrollDelay)">
               {{ post.title }}
             </router-link>
 
@@ -17,7 +17,7 @@
 
               <router-link class="preview__author"
                 :to="`/by/${kebabify(post.author)}`"
-                @click.native="scrollTo(0, 220, 560)">
+                @click.native="scrollTo(0, 220, scrollDelay)">
                 {{ post.author }}
               </router-link>
             </div>
@@ -51,6 +51,10 @@ export default {
 
   computed: {
     reading() { return this.filters.post },
+    scrollDelay() { return (this.$device.phone) ? 0 : 560 },
+    figureClass() {
+      return { 'preview__figure--mobile': this.$device.phone && this.reading }
+    },
     feed() {
       const filterBy = {
         post: (filter, { id }) => filter === id,

@@ -78,10 +78,14 @@ const matchMediaFallback = () => {
     let height = device.height
 
     let timer = setInterval(() => {
-      if (width !== device.width || height !== device.height) return;
-      clearTimeout(timer)
-      listeners.forEach(handler => handler())
-      idle = true
+      if (width !== device.width || height !== device.height) {
+        width = device.width
+        height = device.height
+      } else {
+        clearTimeout(timer)
+        listeners.forEach(handler => handler())
+        idle = true
+      }
     }, 100)
   })
 

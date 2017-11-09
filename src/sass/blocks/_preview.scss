@@ -38,6 +38,7 @@
   &__figure {
     position: relative;
     padding-top: 140%;
+    transition: padding-top 275ms cb(out);
     @include bgCover;
 
     &::before {
@@ -48,6 +49,10 @@
       width: 100%;
       height: 33%;
       background-image: linear-gradient(to bottom, cc(shadow, .33), transparent);
+    }
+
+    &--mobile {
+      padding-top: 90%;
     }
   }
 
@@ -68,6 +73,7 @@
     background-color: cc(shadow, 0);
     transition: background-color 225ms cb();
 
+    .preview__figure--mobile &,
     &:hover {
       background-color: cc(shadow, .65);
     }

@@ -37,15 +37,17 @@
   }
 
   &__header {
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    width: 50vw;
-    height: calc(70vw - 2.5rem);
-    display: flex;
-    flex-direction: column;
-    padding-right: 2.5rem;
-    padding-bottom: 2.5rem;
+    @media (--tablet) {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      width: 50vw;
+      height: calc(70vw - 2.5rem);
+      display: flex;
+      flex-direction: column;
+      padding-right: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
 
     @media (--laptop) {
       position: static;
@@ -59,15 +61,25 @@
 
   &__title {
     @extend %txt--title;
-    color: cc(txt, alt);
-    margin-bottom: .75rem;
-    padding-left: 1.25rem;
+    display: none;
+
+    @media (--tablet) {
+      display: block;
+      color: cc(txt, alt);
+      margin-bottom: .75rem;
+      padding-left: 1.25rem;
+    }
   }
 
   &__meta {
-    margin-bottom: 1.25rem;
-    padding-left: 1.25rem;
-    padding-bottom: 1.25rem;
+    display: none;
+
+    @media (--tablet) {
+      display: block;
+      margin-bottom: 1.25rem;
+      padding-left: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
 
     @media (--laptop) {
       border-bottom: 1px solid cc(border);
@@ -99,7 +111,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 1.25rem 2.5rem 1.25rem 2.5rem;
+    padding: 0 2.5rem 1.25rem 2.5rem;
+
+    @media (--tablet) {
+      padding-top: 1.25rem;
+    }
 
     @media (--laptop) {
       padding-right: 7.5rem;

@@ -4,13 +4,6 @@
     <blog-feed :filters="filters"/>
     <blog-post :post="post"/>
     <blog-footer/>
-
-    <ul :style="reporter">
-      <li v-for="(active, device) in $device">
-        <label>{{ device }}</label>
-        <output>{{ active }}</output>
-      </li>
-    </ul>
   </main>
 </template>
 
@@ -36,14 +29,6 @@ export default {
       labels: {
         post: '',
         author: ''
-      },
-      reporter: {
-        position: 'fixed',
-        padding: '5rem',
-        top: 0,
-        right: 0,
-        background: 'white',
-        zIndex: 1
       }
     }
   },
