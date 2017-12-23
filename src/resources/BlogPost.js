@@ -1,10 +1,14 @@
 export default {
   post(id) {
     return {
-      path: `/post/${id}.json`,
+      path: `/object/${id}`,
       resolve: (response, mappers) => {
-        let { title, content, meta } = response.results[0]
-        content = '<p>' + content.split('\n\n').join('</p><p>') + '</p>'
+        let { title, content, created_at, metadata } = response.object
+        let meta = {
+          description: metadata.description,
+          published: created_at,
+          author: metadata.author.title
+        }
         return mappers.merge({ title, content, ...meta })
       }
     }
