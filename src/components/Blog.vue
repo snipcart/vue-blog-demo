@@ -1,5 +1,6 @@
 <template>
   <main class="blog" :class="{ 'blog--reading': this.post }">
+    <blog-title :blog-name="title" :filters="filters" />
     <blog-nav :content="content" :filters="filters" :navs="navs"/>
     <blog-feed :filters="filters"/>
     <blog-post :post="post"/>
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+import BlogTitle from './BlogTitle'
 import BlogNav from './BlogNav'
 import BlogFeed from './BlogFeed'
 import BlogPost from './BlogPost'
@@ -15,7 +17,7 @@ import BlogFooter from './BlogFooter'
 
 export default {
   name: 'blog',
-  components: { BlogNav, BlogFeed, BlogPost, BlogFooter },
+  components: { BlogTitle, BlogNav, BlogFeed, BlogPost, BlogFooter },
   resource: 'Blog',
   props: {
     post: String,
