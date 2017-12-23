@@ -6,12 +6,13 @@ import router from './router'
 import * as resources from './resources'
 import resource from './plugins/resource'
 import deviceQueries from './plugins/device-queries'
+import config from './config/cosmic'
 
 Vue.config.productionTip = false
 
 Vue.use(resource, {
   resources,
-  endpoint: '/static/api'
+  endpoint: 'https://api.cosmicjs.com/v1/' + config.bucket_slug
 })
 
 Vue.use(deviceQueries, {
