@@ -11,6 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "lodash.map": "^4.6.0",
     "lodash.merge": "^4.6.0",
     "scrollto-with-animation": "^4.5.2",
     "vue": "^2.5.2",
