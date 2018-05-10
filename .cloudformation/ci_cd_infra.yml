@@ -1,0 +1,237 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CI/CD + S3 bucket Website Hostoing for Front-End example in VueJS
+
+#-------------------------------------------------------------------------------
+#--[ PARAMETERS ]---------------------------------------------------------------
+#-------------------------------------------------------------------------------
+Parameters:
+  BuildBucket:
+    Description: S3 Build bucket
+    Type: String
+
+  BucketName:
+    Description: S3 website bucket
+    Type: String
+
+  CacheControlMaxAge:
+    Description: Cache Control for S3 synchronization (default 5 min)
+    Type: Number
+    Default: 300
+
+  GitHubUser:
+    Description: GitHub user
+    Type: String
+
+  GitHubRepo:
+    Description: GitHub repository
+    Type: String
+
+  GitHubBranch:
+    Description: Gith branch for
+    Type: String
+
+  GitHubToken:
+    Description: GitHub personal token
+    Type: String
+    NoEcho: true
+
+  SlackHook:
+    Description: Slack hook
+    Type: String
+    NoEcho: true
+
+#-------------------------------------------------------------------------------
+#--[ RESOURCES ]----------------------------------------------------------------
+#-------------------------------------------------------------------------------
+Resources:
+  S3WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+    DeletionPolicy: Retain
+
+  S3BuildBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BuildBucket
+
+  SampleBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3WebsiteBucket
+      PolicyDocument:
+        Statement:
+          - Action:
+              - s3:GetObject
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                -
+                  - "arn:aws:s3:::"
+                  -
+                    Ref: "S3WebsiteBucket"
+                  - "/*"
+            Principal: "*"
+
+  CodeBuildServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: AWSCodeBuildServiceRole
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "codebuild.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource: "*"
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - iam:*
+              - Resource:
+                  - !Sub arn:aws:s3:::${BucketName}/*
+                  - !Sub arn:aws:s3:::${BucketName}
+                Effect: Allow
+                Action:
+                  - s3:*
+              - Resource:
+                  - !Sub arn:aws:s3:::${BuildBucket}/*
+                  - !Sub arn:aws:s3:::${BuildBucket}
+                Effect: Allow
+                Action:
+                  - s3:Get*
+
+  CodePipelineServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: AWSCodePipelineServiceRole
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "codepipeline.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource:
+                  - !Sub arn:aws:s3:::${BuildBucket}/*
+                  - !Sub arn:aws:s3:::${BuildBucket}
+                Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketVersioning
+              - Resource: "*"
+                Effect: Allow
+                Action:
+                  - codebuild:StartBuild
+                  - codebuild:BatchGetBuilds
+                  - codedeploy:*
+                  - cloudformation:*
+                  - iam:PassRole
+                  - lambda:*
+
+#--[ CodeBuild Production ]--------------------------------------------------------
+  CodeBuild:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Source:
+        Type: "CODEPIPELINE"
+      Environment:
+        ComputeType: "BUILD_GENERAL1_SMALL"
+        Image: "node:8-alpine"
+        Type: "LINUX_CONTAINER"
+        EnvironmentVariables:
+          - Name: AWS_DEFAULT_REGION
+            Value: !Ref AWS::Region
+          - Name: BUCKET_NAME
+            Value: !Ref BucketName
+          - Name: CACHE_CONTROL_MAX_AGE
+            Value: !Ref CacheControlMaxAge
+          - Name: BRANCH
+            Value: !Ref GitHubBranch
+          - Name: SLACK_HOOK
+            Value: !Ref SlackHook
+          - Name: REPO
+            Value: !Ref GitHubRepo
+          - Name: USER
+            Value: !Ref GitHubUser
+      Name: !Ref GitHubRepo
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+
+#--[ CodePipeline ]-------------------------------------------------------------
+  CodePipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: !Ref GitHubRepo
+      RoleArn: !GetAtt CodePipelineServiceRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref BuildBucket
+      Stages:
+        - Name: "Source"
+          Actions:
+            - Name: "Download_Source"
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              Configuration:
+                Owner: !Ref GitHubUser
+                Repo: !Ref GitHubRepo
+                Branch: !Ref GitHubBranch
+                OAuthToken: !Ref GitHubToken
+              OutputArtifacts:
+                - Name: source
+              RunOrder: 1
+        - Name: "Build"
+          Actions:
+            - Name: "Build_and_deploy"
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: !Ref CodeBuild
+              InputArtifacts:
+                - Name: source
+              OutputArtifacts:
+                - Name: build
+              RunOrder: 1
+
+Outputs:
+  WebsiteURL:
+    Value: !GetAtt [S3WebsiteBucket, WebsiteURL]
+    Description: URL for website hosted on S3
+    Export:
+      Name: WebsiteURL
+  S3BucketSecureURL:
+    Value: !Join ['', ['https://', !GetAtt [S3WebsiteBucket, DomainName]]]
+    Description: Name of S3 bucket to hold website content
+    Export:
+      Name: WebsiteSecureURL
