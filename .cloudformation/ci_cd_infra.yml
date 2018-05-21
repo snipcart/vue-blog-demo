@@ -18,6 +18,10 @@ Parameters:
     Type: Number
     Default: 300
 
+  CertificateArn:
+    Description: Certificate ARN, located in us-east-1, for CloudFront Distribution CNAME
+    Type: String
+
   GitHubUser:
     Description: GitHub user
     Type: String
@@ -35,6 +39,14 @@ Parameters:
     Type: String
     NoEcho: true
 
+  HostedZoneName:
+    Description: Hosted Zone Name, obviously
+    Type: String
+
+  RecordName:
+    Description: Name of the record set (without the hosted zone name, just the last subdomain)
+    Type: String
+
   SlackHook:
     Description: Slack hook
     Type: String
@@ -51,7 +63,7 @@ Resources:
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
-    DeletionPolicy: Retain
+#    DeletionPolicy: Retain
 
   S3BuildBucket:
     Type: AWS::S3::Bucket
@@ -76,6 +88,57 @@ Resources:
                     Ref: "S3WebsiteBucket"
                   - "/*"
             Principal: "*"
+
+  CloudfrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Ref BucketName
+        Comment: !Ref BucketName
+        DefaultRootObject: index.html
+        Enabled: True
+        IPV6Enabled: True
+        DefaultCacheBehavior:
+          ForwardedValues:
+            QueryString: True
+          TargetOriginId: !Sub S3-Website-${BucketName}
+          ViewerProtocolPolicy: redirect-to-https
+        Origins:
+          - CustomOriginConfig:
+              OriginProtocolPolicy: http-only
+            DomainName: !Sub ${BucketName}.s3-website-${AWS::Region}.amazonaws.com
+            Id: !Sub S3-Website-${BucketName}
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+      Tags:
+        - Key: Env
+          Value: prod
+        - Key: Name
+          Value: static-website-example
+
+  Route53RecordSetIPv4:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudfrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Comment: !Ref BucketName
+      HostedZoneName: !Ref HostedZoneName
+      Name: !Sub ${RecordName}.${HostedZoneName}
+      Type: A
+
+  Route53RecordSetIPv6:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      AliasTarget:
+        DNSName: !GetAtt CloudfrontDistribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+      Comment: !Ref BucketName
+      HostedZoneName: !Ref HostedZoneName
+      Name: !Sub ${RecordName}.${HostedZoneName}
+      Type: AAAA
 
   CodeBuildServiceRole:
     Type: AWS::IAM::Role
