@@ -1,6 +1,6 @@
 <template>
   <transition name="post">
-    <article v-if="post" class="post">
+    <article v-if="ready && post" class="post">
       <header class="post__header">
         <h2 class="post__title">{{ title }}</h2>
 
@@ -40,7 +40,8 @@ export default {
       content: '',
       published: '',
       description: '',
-      commentsReady: false
+      commentsReady: false,
+      ready: false
     }
   },
 
@@ -58,16 +59,25 @@ export default {
     kebabify,
     prettyDate,
     showComments() {
+      // This is injected by prerender-spa-plugin on build time, we don't prerender disqus comments.
+      if (window.__PRERENDER_INJECTED &&
+          window.__PRERENDER_INJECTED.prerendered) {
+        return;
+      }
+
       setTimeout(() => {
         this.commentsReady = true
       }, 1000)
     }
   },
 
-  beforeMount() {
+  mounted() {
     if (!this.post) return;
     this.$getResource('post', this.post)
       .then(this.showComments)
+      .then(() => {
+        this.ready = true;
+      });
   }
 }
 </script>

@@ -55,6 +55,7 @@
     "pace-progress": "^1.0.2",
     "portfinder": "^1.0.16",
     "postcss-custom-media": "^6.0.0",
+    "prerender-spa-plugin": "^3.3.0",
     "rimraf": "^2.6.0",
     "sass-loader": "^6.0.7",
     "semver": "^5.5.0",

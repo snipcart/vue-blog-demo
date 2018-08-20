@@ -53,8 +53,11 @@ export default {
     }
   },
 
-  beforeMount() {
+  mounted() {
     this.$getResource('blog')
+      .then(x => {
+        // use pace hook to know when rendering is ready
+      })
   }
 }
 </script>

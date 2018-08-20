@@ -6,6 +6,7 @@ import router from './router'
 import * as resources from './resources'
 import resource from './plugins/resource'
 import deviceQueries from './plugins/device-queries'
+import Pace from 'pace-progress'
 
 Vue.config.productionTip = false
 
@@ -25,5 +26,13 @@ Vue.use(deviceQueries, {
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
+  mounted() {
+    Pace.start()
+    Pace.on('hide', () => {
+      setTimeout(() => {
+        document.dispatchEvent(new Event('app.rendered'));
+      }, 500)
+    })
+  }
 }).$mount('#app')

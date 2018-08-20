@@ -93,7 +93,7 @@ export default {
     }
   },
 
-  beforeMount() {
+  mounted() {
     this.$getResource('feed')
       .then(posts => {
         if (!Object.keys(this.filters).length) {

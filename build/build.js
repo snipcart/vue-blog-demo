@@ -1,18 +1,42 @@
 'use strict'
 require('./check-versions')()
-
 process.env.NODE_ENV = 'production'
 
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
+const fs = require('fs')
 const chalk = require('chalk')
 const shell = require('shelljs')
 const webpack = require('webpack')
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
 const config = require('../config')
 const copyFiles = config.build.copyFiles
 const assetsRoot = config.build.assetsRoot
 const webpackConfig = require('./webpack.prod.conf')
+
+const feed = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'static', 'api', 'feed.json')))
+const prenderedRoutes = feed
+  .results
+  .map(x => `/read/${x.id}`);
+
+prenderedRoutes.unshift('/');
+
+webpackConfig.plugins.push(
+  new PrerenderSPAPlugin({
+    staticDir: path.resolve(__dirname, '..', 'dist'),
+    routes: prenderedRoutes,
+    renderer: new Renderer({
+      // Optional - The name of the property to add to the window object with the contents of `inject`.
+      injectProperty: '__PRERENDER_INJECTED',
+      // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+      inject: {
+        prerendered: true
+      },
+      renderAfterDocumentEvent: 'app.rendered'
+    })
+  }));
 
 const spinner = ora('building for production...')
 spinner.start()
