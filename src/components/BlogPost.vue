@@ -1,6 +1,6 @@
 <template>
   <transition name="post">
-    <article v-if="ready && post" class="post">
+    <article v-if="allReady" class="post">
       <header class="post__header">
         <h2 class="post__title">{{ title }}</h2>
 
@@ -45,6 +45,12 @@ export default {
     }
   },
 
+  computed: {
+    allReady() {
+      return this.ready && this.post;
+    }
+  },
+
   watch: {
     post(to, from) {
       if (to === from || !this.post) return;
@@ -52,6 +58,9 @@ export default {
       this.commentsReady = false
       this.$getResource('post', to)
         .then(this.showComments)
+        .then(() => {
+          this.ready = true;
+        });
     }
   },
 
@@ -72,7 +81,11 @@ export default {
   },
 
   mounted() {
-    if (!this.post) return;
+    if (!this.post) {
+      this.ready = true;
+      return;
+    }
+
     this.$getResource('post', this.post)
       .then(this.showComments)
       .then(() => {
