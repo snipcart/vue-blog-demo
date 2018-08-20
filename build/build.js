@@ -16,10 +16,9 @@ const copyFiles = config.build.copyFiles
 const assetsRoot = config.build.assetsRoot
 const webpackConfig = require('./webpack.prod.conf')
 
-const feed = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'static', 'api', 'feed.json')))
-const prenderedRoutes = feed
-  .results
-  .map(x => `/read/${x.id}`);
+const fileContent = fs.readFileSync(path.resolve(__dirname, '..', 'static', 'api', 'feed.json'));
+const feed = JSON.parse(fileContent);
+const prenderedRoutes = feed.results.map(x => `/read/${x.id}`);
 
 prenderedRoutes.unshift('/');
 
@@ -28,9 +27,7 @@ webpackConfig.plugins.push(
     staticDir: path.resolve(__dirname, '..', 'dist'),
     routes: prenderedRoutes,
     renderer: new Renderer({
-      // Optional - The name of the property to add to the window object with the contents of `inject`.
       injectProperty: '__PRERENDER_INJECTED',
-      // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
       inject: {
         prerendered: true
       },

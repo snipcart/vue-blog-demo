@@ -1,5 +1,3 @@
-import './startup'
-
 import Vue from 'vue'
 import App from './App'
 import router from './router'
@@ -30,9 +28,7 @@ new Vue({
   mounted() {
     Pace.start()
     Pace.on('hide', () => {
-      setTimeout(() => {
-        document.dispatchEvent(new Event('app.rendered'));
-      }, 500)
+      document.dispatchEvent(new Event('app.rendered'));
     })
   }
 }).$mount('#app')
