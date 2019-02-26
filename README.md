@@ -2,11 +2,22 @@
 
 ![vuejs-blog-demo](https://snipcart.com/media/175864/build-vuejs-blog-copy.jpg)
 
-> Learn how to build a killer Vue.js blog with a full demo: custom plugin, templating, pagination, filtering, data decoupling, and more!
+In this demo, I'm going to provide an open source Vue.js blog demo + cover.
+
+Steps:
+
+- Setup and routing
+- Displaying your blog feed with filters
+- Displaying individual posts with comments
+- Creating a custom Vue plugin to keep your data decoupled
+
+The result will be a JAMstack-ready, truly decoupled Vue blog you can plug to any data source—more on that later.
+
+> [Read full tutorial on the blog](https://snipcart.com/blog/vuejs-blog-demo)
 
 > [See live demo hosted on Netlify](https://vue-blog-demo.netlify.com/)
 
-> [Read full tutorial on the blog](https://snipcart.com/blog/vuejs-blog-demo)
+Enjoy folks!
 
 ## Build Setup
 
