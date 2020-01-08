@@ -1,0 +1,13 @@
+{
+  "results": [{
+    "id": "automated-static-blog",
+    "title": "A way to automate you blog on AWS",
+    "content": "Coming soon, a simple way to automate your blog on AWS for almost no costs.",
+    "image": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/etienne-bosiger.jpg",
+    "meta": {
+      "description": "Coming soon, a simple way to automate your blog on AWS for almost no costs.",
+      "published": "2017-09-09T22:11:56Z",
+      "author": "Alexandre Kervadec"
+    }
+  }]
+}

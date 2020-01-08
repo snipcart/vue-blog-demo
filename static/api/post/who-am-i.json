@@ -1,0 +1,13 @@
+{
+  "results": [{
+    "id": "who-am-i",
+    "title": "Who am I",
+    "content": "I am a cloud enthousiast currently working at Osones! More coming soon.",
+    "image": "https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/karl-magnuson.jpg",
+    "meta": {
+      "description": "Quick description of who I am and what I do for a living.",
+      "published": "2017-09-14T18:17:00Z",
+      "author": "Alexandre Kervadec"
+    }
+  }]
+}
