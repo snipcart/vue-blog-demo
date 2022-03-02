@@ -48,8 +48,7 @@ const matchMediaFallback = () => {
       .reverse()
 
     const operand = (!limit) ? '=='
-      : (limit === 'min') ? '<'
-      : '>'
+      : (limit === 'min') ? '<' : '>'
 
     const parseValue = (() => {
       return (~value.indexOf('em'))
